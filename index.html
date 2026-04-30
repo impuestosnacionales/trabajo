@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nose</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+      font-family: "Georgia", serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* GIFs laterales */
+    .gif-side {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 160px;
+      height: 300px;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .gif-left { left: 150px; }
+    .gif-right { right: 150px; }
+
+    .gif-side img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    /* Centro */
+    .main-container {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 5;
+    }
+
+    /* Sobre */
+    .envelope-wrapper {
+      position: relative;
+      width: 420px;
+      height: 260px;
+      cursor: pointer;
+      transition: transform 0.6s ease;
+    }
+
+    .envelope {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #f48fb1;
+      border-radius: 12px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+      overflow: hidden;
+    }
+
+    .flap {
+      position: absolute;
+      width: 100%;
+      height: 55%;
+      background: #ec407a;
+      clip-path: polygon(0 0, 50% 100%, 100% 0);
+      transform-origin: top;
+      transition: transform 1s ease;
+      z-index: 3;
+    }
+
+    .letter {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: min(700px, 80vw);
+      max-height: 80vh;
+      transform: translate(-50%, -50%) scale(0.8);
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.9s ease;
+      z-index: 20;
+      overflow: auto;
+    }
+
+    .letter h1 {
+      color: #c2185b;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .letter p {
+      color: #5d4037;
+      font-size: 1.1rem;
+      line-height: 1.9;
+      text-align: center;
+    }
+
+    /* Fondo oscuro */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.8s;
+      z-index: 15;
+    }
+
+    /* Estado abierto */
+    .open .flap {
+      transform: rotateX(180deg);
+    }
+
+    .show-letter {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .show-overlay {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Música */
+    .music-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 30;
+      border-radius: 50px;
+      padding: 12px 20px;
+      font-weight: bold;
+    }
+
+    /* Botón cerrar */
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      border: none;
+      background: transparent;
+      font-size: 1.8rem;
+      color: #c2185b;
+      cursor: pointer;
+    }
+
+    @media(max-width: 900px){
+      .gif-side {
+        width: 90px;
+        height: 160px;
+      }
+
+      .envelope-wrapper {
+        width: 300px;
+        height: 200px;
+      }
+
+      .letter {
+        padding: 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- GIFs -->
+  <div class="gif-side gif-left">
+    <img src="27a7db97a90f2fa8114207d8b197c850.gif" alt="gif izquierdo"><p>VOSSSSSSSSSSS</p>
+  </div>
+  
+
+  <div class="gif-side gif-right">
+    <img src="de4d59ebdfa718d50e3c3bf33333cc19.gif" alt="gif derecho">
+  </div>
+
+  <!-- Sobre -->
+  <div class="main-container">
+    <div class="envelope-wrapper" onclick="abrirCarta()">
+      <div class="envelope">
+        <div class="flap"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay" onclick="cerrarCarta()"></div>
+
+  <!-- Carta -->
+  <div class="letter" id="letter">
+    <button class="close-btn" onclick="cerrarCarta()">×</button>
+    <h1>💖 Feliz Día del Trabajador Corachon</h1>
+    <p>
+      Mi amor jaja quiza es muy poco pero es mi manera de hacerte llegar lo orgulloso que me haces sentir <br>
+
+      A pesar la distancia que tristemente nos separa quiero que sepas lo increiblemente asombrosa que eres al soportar
+      tanto y seguir adelante, amo como te esfuerzas hasta en los minimos detalles en tu trabajo, eso dice mucho de uno <br>
+
+      No solo quiero yo pensar que eres asombrosa, tu tambien piensalo por que es la verdad, me haces muy feliz con tu manera
+      unica de ser, y tu increible dedicacion a las cosas 🌹 <br>
+
+      Estoy orgulloso de ti hoy y siempre.
+      Mereces todo lo hermoso que la vida pueda darte y yo intentare dartelo 💕
+    </p>
+  </div>
+
+  <!-- Música -->
+  <audio id="bgMusic" loop>
+    <source src="Carpenters - Close to you.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    function abrirCarta() {
+      document.querySelector(".envelope-wrapper").classList.add("open");
+      document.getElementById("letter").classList.add("show-letter");
+      document.getElementById("overlay").classList.add("show-overlay");
+  
+      const music = document.getElementById("bgMusic");
+      if (music.paused) {
+        music.play();
+      }
+    }
+  
+    function cerrarCarta() {
+      document.querySelector(".envelope-wrapper").classList.remove("open");
+      document.getElementById("letter").classList.remove("show-letter");
+      document.getElementById("overlay").classList.remove("show-overlay");
+      const music = document.getElementById("bgMusic");
+        music.pause();
+        music.currentTime = 0;
+    }
+  
+    function toggleMusic(event) {
+      event.stopPropagation();
+      const music = document.getElementById("bgMusic");
+  
+      if (music.paused) {
+        music.play();
+      } else {
+        music.pause();
+      }
+    }
+  </script>
+
+</body>
+</html>
